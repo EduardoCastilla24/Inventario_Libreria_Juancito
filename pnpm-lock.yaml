@@ -41,6 +41,9 @@ importers:
       jspdf-autotable:
         specifier: ^5.0.2
         version: 5.0.2(jspdf@3.0.1)
+      sweetalert2:
+        specifier: ^11.22.0
+        version: 11.22.0
       tailwind-merge:
         specifier: ^3.1.0
         version: 3.3.0
@@ -2971,6 +2974,9 @@ packages:
   svg-pathdata@6.0.3:
     resolution: {integrity: sha512-qsjeeq5YjBZ5eMdFuUa4ZosMLxgr5RZ+F+Y1OrDhuOCEInRMA3x74XdBtggJcj9kOeInz0WE+LgCPDkZFlBYJw==}
     engines: {node: '>=12.0.0'}
+
+  sweetalert2@11.22.0:
+    resolution: {integrity: sha512-pSMuRGDULhh+wrFkO22O0YsIXxs8yFE0O+WVYXcqc/sTa1oRnf0JlR+vfQIRY1QM1UeFfnCjyw6DYnG75/oxiQ==}
 
   swr@2.3.3:
     resolution: {integrity: sha512-dshNvs3ExOqtZ6kJBaAsabhPdHyeY4P2cKwRCniDVifBMoG/SVI7tfLWqPXriVspf2Rg4tPzXJTnwaihIeFw2A==}
@@ -6628,6 +6634,8 @@ snapshots:
 
   svg-pathdata@6.0.3:
     optional: true
+
+  sweetalert2@11.22.0: {}
 
   swr@2.3.3(react@19.1.0):
     dependencies:
