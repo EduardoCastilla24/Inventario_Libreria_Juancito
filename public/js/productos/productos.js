@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td class="hidden"> ${row.estado}</td>
                             <td class="!w-fit">
                                 <div class="flex justify-center gap-2">
-                                    <button class="!px-2.5 py-1.5 rounded-md shadow-md border border-gray-900" onclick=" import('/js/productos/edit_product.js').then(module => module.Edit_Product('${row.cod_prod}'))">
+                                    <button class="!px-2.5 py-1.5 rounded-md shadow-md border border-[#2c4382]" onclick=" import('/js/productos/edit_product.js').then(module => module.Edit_Product('${row.cod_prod}'))">
                                         <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                                     </button>
                                     <button class="!px-2.5 py-1.5 rounded-md shadow-md bg-[#fde6eb] outline-none" onclick=" import('/js/productos/delete_product.js').then(module => module.Delete('${row.cod_prod}'))">
@@ -116,12 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Si la ruta actual no está en el array, crear el botón con onclick para mostrar el modal
                 $(".dataTables_filter").append(`
-                    <button class="absolute right-33.5 bg-gray-900 text-gray-50 border !px-3 !py-2 h-fit !text-xs rounded-md hover:!translate-y-0" id="invoke"  onclick=" import('/js/Modal/Modal.js').then(module => module.Open_Modal('modal_product_filter'))">
+                    <button class="absolute right-33.5 bg-[#2c4382] text-gray-50 border !px-3 !py-2 h-fit !text-xs rounded-md hover:!translate-y-0" id="invoke"  onclick=" import('/js/Modal/Modal.js').then(module => module.Open_Modal('modal_product_filter'))">
                         <a class="!p-0 flex gap-2 items-center">
                             <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-filter-search"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.36 20.213l-2.36 .787v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414" /><path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M20.2 20.2l1.8 1.8" /></svg>                        
                         </a>
                     </button>
-                    <button class="border-gray-900 text-gray-900 border !px-3 !py-2.5 h-fit !text-xs rounded-md hover:-translate-y-1 transition-all duration-300" id="invoke"  onclick=" import('/js/Modal/Modal.js').then(module => module.Open_Modal('modal_product'))">
+                    <button class="border-[#2c4382] text-[#2c4382] border !px-3 !py-2.5 h-fit !text-xs rounded-md hover:-translate-y-1 transition-all duration-300" id="invoke"  onclick=" import('/js/Modal/Modal.js').then(module => module.Open_Modal('modal_product'))">
                         <a class="!p-0 flex gap-2 items-center">
                             <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-library-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" /><path d="M11 10h6" /><path d="M14 7v6" /></svg>
                             Agregar
@@ -146,7 +146,7 @@ function Filter(table, container, colum){
 
      // Obtener valores únicos
         table.column(columnIndex).data().unique().sort().each(function (d) {
-            const chip = $(`<button type="button" class="chip text-gray-900 border px-3 py-1 rounded-full !text-xs !h-fit transition" data-value="${d}">${d}</button>`);
+            const chip = $(`<button type="button" class="chip text-[#2c4382] border px-3 py-1 rounded-full !text-xs !h-fit transition" data-value="${d}">${d}</button>`);
             chipContainer.append(chip);
         });
 
@@ -159,12 +159,12 @@ function Filter(table, container, colum){
             if (activeFilter === value) {
                 table.column(columnIndex).search('').draw(); // limpiar filtro
                 activeFilter = null;
-                $(this).removeClass('bg-gray-900 text-white').addClass('text-gray-900 hover:bg-gray-700');
+                $(this).removeClass('bg-[#2c4382] text-white').addClass('text-[#2c4382] hover:bg-gray-700');
             } else {
                 table.column(columnIndex).search('^' + value + '$', true, false).draw(); // aplicar filtro exacto
                 activeFilter = value;
-                chipContainer.find('.chip').removeClass('bg-gray-900 text-white').addClass('text-gray-900');
-                $(this).removeClass('text-gray-700').addClass('bg-gray-900 text-white');
+                chipContainer.find('.chip').removeClass('bg-[#2c4382] text-white').addClass('text-[#2c4382]');
+                $(this).removeClass('text-gray-700').addClass('bg-[#2c4382] text-white');
             }
         });
 }

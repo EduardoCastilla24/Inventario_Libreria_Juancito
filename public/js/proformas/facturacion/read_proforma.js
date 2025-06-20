@@ -39,7 +39,7 @@ export async function Read_Detalle_Proforma(cod_prod) {
 
 
     // LOGO
-    doc.addImage("../assets/logo/inventario_logo.png", "PNG", 10, 1, 12, 17);
+    doc.addImage("../assets/logo/inventario_logo.png", "PNG", 10, 5, 12, 10);
 
     // INFORMACIÓN DE TIENDA
     doc.setFont("helvetica", "bold");

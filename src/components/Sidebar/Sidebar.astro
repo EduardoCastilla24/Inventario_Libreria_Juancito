@@ -7,9 +7,12 @@ const user = await Astro.locals.currentUser()
 const userRole = user?.publicMetadata?.role;
 ---
 
-<aside id="sidebar" class="shadow-md fixed w-[16rem] z-30 bg-white xl:w-56 min-h-screen h-full -translate-x-[80rem] xl:-translate-x-0 transition-transform duration-300 py-4" aria-label="Sidebar">
+<aside id="sidebar" class="shadow-md fixed w-[16rem] z-30 bg-white xl:w-56 min-h-screen h-full -translate-x-[80rem] 2xl:-translate-x-0 transition-transform duration-300 py-4" aria-label="Sidebar">
 
-    <div class="h-fit px-3 py-4 overflow-y-auto">
+    <div class="h-fit px-3 flex flex-col gap-8 py-4 overflow-y-auto">
+        <span class="mt-4 flex items-center justify-center">
+            <img class="h-12" src="/assets/logo/inventario_logo.png" alt="">
+        </span>
         <ul class="space-y-2 font-medium">
             {userRole === 'admin' && (
                 <>
@@ -37,7 +40,7 @@ const userRole = user?.publicMetadata?.role;
     <div class="absolute bottom-12 flex flex-col w-full gap-2 px-5">
         <CardUser></CardUser>
         <SignedIn>
-            <SignOutButton class:list={"text-gray-900 border px-3  !w-full"}>
+            <SignOutButton class:list={"text-[#2c4382] border border-[#2c4382] px-3  !w-full"}>
                 Cerrar Sesión
             </SignOutButton>
         </SignedIn>

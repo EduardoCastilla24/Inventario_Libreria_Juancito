@@ -14,8 +14,8 @@ const currentPath = Astro.url.pathname;
     class={`flex items-center p-2 text-xs rounded-lg hover:border transition-all duration-150 ease-in-out hover:-translate-y-1
         ${
             (currentPath === '/' && title?.toLowerCase() === 'inicio') || currentPath.startsWith(`/${title}`)
-            ? 'bg-gray-900 text-gray-100'
-            : 'text-gray-900 hover:border-gray-900 hover:bg-gray-100'
+            ? 'bg-[#2c4382] text-gray-100'
+            : 'text-[#2c4382] hover:border-[#2c4382] hover:bg-gray-100'
         }`}>
         <slot/>
         <span class="ms-2.5">{title}</span>

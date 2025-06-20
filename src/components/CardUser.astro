@@ -9,6 +9,6 @@ const user = await Astro.locals.currentUser()
         <div class="flex gap-2 items-center justify-between">
             <p class="text-xs text-black font-semibold">{user?.fullName}</p>
         </div>
-        <p class="text-[0.7rem] text-black opacity-50">{user?.emailAddresses[0]?.emailAddress}</p>
+        <p class="text-[0.7rem] text-black opacity-60">{user?.emailAddresses[0]?.emailAddress}</p>
     </span>
 </div>

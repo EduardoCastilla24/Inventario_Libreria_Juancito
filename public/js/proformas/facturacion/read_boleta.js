@@ -35,7 +35,7 @@ export async function Read_Detalle_Boleta(cod_prod) {
   };
 
   // ENCABEZADO
-  doc.addImage("../assets/logo/inventario_logo.png", "PNG", 29, y, 15, 20);
+  doc.addImage("../assets/logo/inventario_logo.png", "PNG", 21, y, 30, 15);
   y += 25;
 
   doc.setFontSize(6);
