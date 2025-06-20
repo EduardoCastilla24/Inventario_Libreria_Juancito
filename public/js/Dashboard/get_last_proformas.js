@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${row.cliente}</td>
                             <td class="!w-fit">
                                 <div class="flex justify-center gap-2">
-                                    <button class="!px-2.5 py-1.5 rounded-md shadow-md border border-gray-900" onclick=" import('/js/proformas/facturacion/read_boleta.js').then(module => module.Read_Detalle_Boleta('${row.cod_proforma}'))" title="Ver Boleta ${row.cod_proforma} ">
+                                    <button class="!px-2.5 py-1.5 rounded-md shadow-md border border-[#2c4382]" onclick=" import('/js/proformas/facturacion/read_boleta.js').then(module => module.Read_Detalle_Boleta('${row.cod_proforma}'))" title="Ver Boleta ${row.cod_proforma} ">
                                         <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>                                    
                                     </button>
                                 </div>

@@ -30,7 +30,7 @@ async function cargarVentasSemanales() {
             datasets: [{
                 label: 'Ventas por día (S/)',
                 data: valores,
-                backgroundColor: '#101828',
+                backgroundColor: '#2c4382',
                 borderWidth: 1
             }]
         },
