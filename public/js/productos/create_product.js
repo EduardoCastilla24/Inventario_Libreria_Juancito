@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             precio_mayorista: document.querySelector("#precio_mayorista").value,
             precio_minorista: document.querySelector("#precio_minorista").value,
             fecha_ingreso: fecha,
-            estado:`=IF(TODAY() >= DATE(YEAR(${año})+3, MONTH(${mes}), DAY(${dia})), "Obsoleto", "Activo")`
+            estado: `=IF(TODAY() >= DATE(${parseInt(año) + 3}, ${mes}, ${dia}), "Obsoleto", "Activo")`
         }
 
         // Serializar el objeto `data` como JSON
