@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const serializedData = JSON.stringify(data);
 
-        const scriptURL = `https://script.google.com/macros/s/AKfycbw43Ycx4MOE3cztFRrO1a3wuisBa7Wo7a5c8NMtoCwIwhpLAIXrtVNmajwOuaYpasVy/exec?action=edit_product&producto=${encodeURIComponent(serializedData)}`;
+        const scriptURL = `https://script.google.com/macros/s/AKfycbyC4woxbJSeSZnip08wLvlk3wPWPhVVZftCbDdfI7h1hI4Kv7ao33O0X1KYlDN1OApn/exec?action=edit_product&producto=${encodeURIComponent(serializedData)}`;
 
         Close_Modal('modal_product_edit', 'form_modal_product_edit')
         Notiflix.Loading.pulse();
