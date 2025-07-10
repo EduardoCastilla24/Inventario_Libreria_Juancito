@@ -70,53 +70,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 tableBody.appendChild(fragment);
 
-                setTimeout(() => {
-                    // Inicializar DataTables
-                    const table = $('.dataTable').DataTable({
-                        responsive: true,
-                        pageLength: 8,
-                        autoWidth: false,
-                        language: {
-                            search: "",
-                            searchPlaceholder: "Buscar...",
-                            lengthMenu: '_MENU_',
-                            zeroRecords: 'No se han encontrado registros que coincidan',
-                            info: 'Mostrando _END_ de _MAX_ registros',
-                            infoEmpty: 'Mostrando _END_ coincidencias',
-                            infoFiltered: "(Filtrado de _MAX_ registros en total)",
-                            emptyTable: 'No existen registros en esta tabla',
-                            paginate: {
-                                next: `
-                                <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-                            `,
-                                previous: `
-                                <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
-                            `
+                // Inicializar DataTables
+                const table = $('.dataTable').DataTable({
+                    responsive: true,
+                    pageLength: 8,
+                    autoWidth: false,
+                    language: {
+                        search: "",
+                        searchPlaceholder: "Buscar...",
+                        lengthMenu: '_MENU_',
+                        zeroRecords: 'No se han encontrado registros que coincidan',
+                        info: 'Mostrando _END_ de _MAX_ registros',
+                        infoEmpty: 'Mostrando _END_ coincidencias',
+                        infoFiltered: "(Filtrado de _MAX_ registros en total)",
+                        emptyTable: 'No existen registros en esta tabla',
+                        paginate: {
+                            next: `
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                        `,
+                            previous: `
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
+                        `
+                        },
+                    },
+                    dom: 'Bfrtip',
+                    // BOTONES DE EXPORTACION
+                    buttons: [
+                        {
+                            'extend': 'excelHtml5',
+                            'text': `
+                            <div class="text-gray-500 flex items-center justify-center !p-0 gap-1 h-8">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-excel"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /><path d="M10 12l4 5" /><path d="M10 17l4 -5" /></svg>                        
+                                <p>Descargar xlsx</p>
+                            </div>
+                        `,
+                            'titleAttr': "Exportar Excel",
+                            autoFilter: true,
+                            exportOptions: {
+                                columns: 'th:not(:last-child)'
                             },
                         },
-                        dom: 'Bfrtip',
-                        // BOTONES DE EXPORTACION
-                        buttons: [
-                            {
-                                'extend': 'excelHtml5',
-                                'text': `
-                                <div class="text-gray-500 flex items-center justify-center !p-0 gap-1 h-8">
-                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-excel"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /><path d="M10 12l4 5" /><path d="M10 17l4 -5" /></svg>                        
-                                    <p>Descargar xlsx</p>
-                                </div>
-                            `,
-                                'titleAttr': "Exportar Excel",
-                                autoFilter: true,
-                                exportOptions: {
-                                    columns: 'th:not(:last-child)'
-                                },
-                            },
-                        ]
-                    });
+                    ]
+                });
 
-                    Filter(table, $('#marca-chips'), 2);
-                    Filter(table, $('#estado-chips'), 9);
-                }, 0);
+                Filter(table, $('#marca-chips'), 2);
+                Filter(table, $('#estado-chips'), 9);
 
                 // Si la ruta actual no está en el array, crear el botón con onclick para mostrar el modal
                 $(".dataTables_filter").append(`
