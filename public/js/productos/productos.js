@@ -32,11 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
 
                 // Poblar los datos en la tabla
+                const fragment = document.createDocumentFragment();
+
                 const tableBody = document.querySelector(".dataTable tbody");
-                tableBody.innerHTML = ""; // Asegura que no haya duplicados
                 data.data.forEach(row => {
-                    tableBody.innerHTML += `
-                        <tr>
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
                             <td>${row.cod_prod}</td>
                             <td>${row.producto}</td>
                             <td>${row.marca}</td>
@@ -63,56 +64,59 @@ document.addEventListener("DOMContentLoaded", () => {
                                     </button>
                                 </div>
                             </td>
-
-                        </tr>
                     `;
+                    fragment.appendChild(tr);
                 });
 
-                // Inicializar DataTables
-                const table = $('.dataTable').DataTable({
-                    responsive: true,
-                    pageLength: 8,
-                    autoWidth: false,
-                    language: {
-                        search: "",
-                        searchPlaceholder: "Buscar...",
-                        lengthMenu: '_MENU_',
-                        zeroRecords: 'No se han encontrado registros que coincidan',
-                        info: 'Mostrando _END_ de _MAX_ registros',
-                        infoEmpty: 'Mostrando _END_ coincidencias',
-                        infoFiltered: "(Filtrado de _MAX_ registros en total)",
-                        emptyTable: 'No existen registros en esta tabla',
-                        paginate: {
-                            next: `
+                tableBody.appendChild(fragment);
+
+                setTimeout(() => {
+                    // Inicializar DataTables
+                    const table = $('.dataTable').DataTable({
+                        responsive: true,
+                        pageLength: 8,
+                        autoWidth: false,
+                        language: {
+                            search: "",
+                            searchPlaceholder: "Buscar...",
+                            lengthMenu: '_MENU_',
+                            zeroRecords: 'No se han encontrado registros que coincidan',
+                            info: 'Mostrando _END_ de _MAX_ registros',
+                            infoEmpty: 'Mostrando _END_ coincidencias',
+                            infoFiltered: "(Filtrado de _MAX_ registros en total)",
+                            emptyTable: 'No existen registros en esta tabla',
+                            paginate: {
+                                next: `
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
                             `,
-                            previous: `
+                                previous: `
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
                             `
+                            },
                         },
-                    },
-                    dom: 'Bfrtip',
-                    // BOTONES DE EXPORTACION
-                    buttons: [
-                        {
-                            'extend': 'excelHtml5',
-                            'text': `
+                        dom: 'Bfrtip',
+                        // BOTONES DE EXPORTACION
+                        buttons: [
+                            {
+                                'extend': 'excelHtml5',
+                                'text': `
                                 <div class="text-gray-500 flex items-center justify-center !p-0 gap-1 h-8">
                                     <svg  xmlns="http://www.w3.org/2000/svg"  width="18"  height="18"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-file-excel"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /><path d="M10 12l4 5" /><path d="M10 17l4 -5" /></svg>                        
                                     <p>Descargar xlsx</p>
                                 </div>
                             `,
-                            'titleAttr': "Exportar Excel",
-                            autoFilter: true,
-                            exportOptions: {
-                                columns: 'th:not(:last-child)'
+                                'titleAttr': "Exportar Excel",
+                                autoFilter: true,
+                                exportOptions: {
+                                    columns: 'th:not(:last-child)'
+                                },
                             },
-                        },
-                    ]
-                });
+                        ]
+                    });
 
-                Filter(table, $('#marca-chips'), 2 )
-                Filter(table, $('#estado-chips'), 9 )
+                    Filter(table, $('#marca-chips'), 2);
+                    Filter(table, $('#estado-chips'), 9);
+                }, 0);
 
                 // Si la ruta actual no está en el array, crear el botón con onclick para mostrar el modal
                 $(".dataTables_filter").append(`
@@ -129,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </button>
                 `)
 
-            // Ocultar el spinner una vez que los datos estén cargados
+                // Ocultar el spinner una vez que los datos estén cargados
             } else {
                 console.error("Error al cargar datos:", data.error);
             }
@@ -139,32 +143,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 });
 
-function Filter(table, container, colum){
+function Filter(table, container, colum) {
     const columnIndex = colum;
     // const chipContainer = $('#column-chips');
     const chipContainer = container;
 
-     // Obtener valores únicos
-        table.column(columnIndex).data().unique().sort().each(function (d) {
-            const chip = $(`<button type="button" class="chip text-[#2c4382] border px-3 py-1 rounded-full !text-xs !h-fit transition" data-value="${d}">${d}</button>`);
-            chipContainer.append(chip);
-        });
+    // Obtener valores únicos
+    table.column(columnIndex).data().unique().sort().each(function (d) {
+        const chip = $(`<button type="button" class="chip text-[#2c4382] border px-3 py-1 rounded-full !text-xs !h-fit transition" data-value="${d}">${d}</button>`);
+        chipContainer.append(chip);
+    });
 
-        // Manejar click (toggle)
-        let activeFilter = null;
+    // Manejar click (toggle)
+    let activeFilter = null;
 
-        chipContainer.on('click', '.chip', function () {
-            const value = $(this).data('value');
+    chipContainer.on('click', '.chip', function () {
+        const value = $(this).data('value');
 
-            if (activeFilter === value) {
-                table.column(columnIndex).search('').draw(); // limpiar filtro
-                activeFilter = null;
-                $(this).removeClass('bg-[#2c4382] text-white').addClass('text-[#2c4382] hover:bg-gray-700');
-            } else {
-                table.column(columnIndex).search('^' + value + '$', true, false).draw(); // aplicar filtro exacto
-                activeFilter = value;
-                chipContainer.find('.chip').removeClass('bg-[#2c4382] text-white').addClass('text-[#2c4382]');
-                $(this).removeClass('text-gray-700').addClass('bg-[#2c4382] text-white');
-            }
-        });
+        if (activeFilter === value) {
+            table.column(columnIndex).search('').draw(); // limpiar filtro
+            activeFilter = null;
+            $(this).removeClass('bg-[#2c4382] text-white').addClass('text-[#2c4382] hover:bg-gray-700');
+        } else {
+            table.column(columnIndex).search('^' + value + '$', true, false).draw(); // aplicar filtro exacto
+            activeFilter = value;
+            chipContainer.find('.chip').removeClass('bg-[#2c4382] text-white').addClass('text-[#2c4382]');
+            $(this).removeClass('text-gray-700').addClass('bg-[#2c4382] text-white');
+        }
+    });
 }
