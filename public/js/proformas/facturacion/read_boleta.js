@@ -36,18 +36,19 @@ export async function Read_Detalle_Boleta(cod_prod) {
 
   // ENCABEZADO
   doc.addImage("../assets/logo/inventario_logo.png", "PNG", 21, y, 30, 15);
-  y += 25;
+  y += 20;
 
   doc.setFontSize(6);
   const info = [
-    "Calle Mariscal Castilla N° 143 int. 18",
-    "Ica - Chincha - Chincha Alta",
-    "TIENDA CHINCHA",
-    "R.U.C: 10770630270",
+    "Libreria - Bazar - Articulos de Oficina",
+    "Fotocopias - Tipeos - Impresiones",
+    "Regalos de Ocación Y Otros",
+    "Av. Melchorita N° 475 - Grocio Prado, Chincha, Ica",
+    "R.U.C: 10218615771",
   ];
   info.forEach((line) => {
     doc.text(line, center(line), y);
-    y += 4;
+    y += 3;
   });
 
   y += 3;
@@ -84,11 +85,11 @@ export async function Read_Detalle_Boleta(cod_prod) {
     doc.setFontSize(6);
     doc.text(`${item.cod_producto}`, 5, y);
     doc.text(`${item.producto}`, 65, y, { align: "right" });
-    y += 4;
+    y += 3;
     doc.text(`${item.cantidad} ${item.unidad}`, 5, y);
     doc.text(item.precio.toFixed(2), 40, y, { align: "right" });
     doc.text(item.subtotal.toFixed(2), 65, y, { align: "right" });
-    y += 6;
+    y += 4;
   });
 
   // TOTAL
@@ -96,16 +97,16 @@ export async function Read_Detalle_Boleta(cod_prod) {
   doc.text("Igv", 5, y);
   doc.text("S/.", 60, y, { align: "right" });
   doc.text(data.igv.toFixed(2), 65, y, { align: "right" });
-  y += 6;
+  y += 4;
   doc.text("Subtotal", 5, y);
   doc.text("S/.", 60, y, { align: "right" });
   doc.text(data.subtotal.toFixed(2), 65, y, { align: "right" });
-  y += 6;
+  y += 4;
 
   doc.setFont("helvetica", "bold");
   doc.text(`Importe Total`, 5, y);
   doc.text(`S/. ${data.total.toFixed(2)}`, 65, y, { align: "right" });
-  y += 10;
+  y += 8;
 
   doc.setFontSize(6);
   doc.setFont("helvetica", "bold");
